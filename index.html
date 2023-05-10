@@ -8,7 +8,45 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <p>olaa</p>
+    <p>Jogo da Velha</p>
+
+    <div class="buttons-containers">
+        <button id="ia-player">Versus IA</button>
+        <button id="2-player">2 Players</button>
+    </div>
+    <div id="container" class="hide">
+        <div class="box" id="block-1"></div>
+        <div class="box" id="block-2"></div>
+        <div class="box" id="block-3"></div>
+        <div class="box" id="block-4"></div>
+        <div class="box" id="block-5"></div>
+        <div class="box" id="block-6"></div>
+        <div class="box" id="block-7"></div>
+        <div class="box" id="block-8"></div>
+        <div class="box" id="block-9"></div>
+        
+        <div id="placar">
+            <span class="caixa-pontos">
+                <span id="player-x"> </span> : <span id="pontos-x">0</span>:
+            </span>
+        </div>
+
+        
+        <div id="placar">
+            <span class="caixa-pontos">
+                <span id="player-o"> </span> : <span id="pontos-o">0</span>:
+            </span>
+        </div>
+    </div>
+
+    <div class="hide">
+        <div class="x"></div>
+        <div class="o"></div>
+    </div>
+
+    <div id="message" class="hide">
+        <p></p>
+    </div>
 
     <script src="script.js"></script>
 </body>
