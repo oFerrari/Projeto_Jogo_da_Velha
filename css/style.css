@@ -1,3 +1,141 @@
-p{
+body {
+    text-align: center;
+    font-family: sans-serif;
+
+    background: linear-gradient(to right, #1d003a, #975bb4, #aa00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+h1 {
+    font-size: 42px;
+}
+
+/* Buttons */
+
+.buttons-containers button {
+    border: 3px solid rgb(85, 83, 83);
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0 10px 20px;
+}
+
+/* Jogo */
+
+#container {
+    display: flex;
+    width: 300px;
+    margin: 0;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box {
+    height: 100px;
+    border: 5px solid #000;
+    box-sizing: border-box;
+    flex: 1 1 33%;
+    display: flex;
+    padding: 0 5px 0px 20px;
+}
+
+#block-1,
+#block-2,
+#block-3 {
+    border-top: none;
+}
+
+#block-1,
+#block-4,
+#block-7 {
+    border-left: none;
+}
+
+#block-7,
+#block-8,
+#block-9 {
+    border-bottom: none;
+}
+
+#block-3,
+#block-6,
+#block-9 {
+    border-right: none;
+}
+
+/* Simbolos */
+
+.x {
+    font-size: 65px;
     color: red;
+    display: inline-block;
+    line-height: 100px;
+    position: relative;
+}
+
+.o {
+    width: 40px;
+    height: 40px;
+    border: 5px solid blue;
+    border-radius: 50%;
+    display: inline-block;
+    margin-top: 17px;
+}
+
+/* Classe de esconder */
+
+/* .hide{
+    display: none !important;
+} */
+
+/* Placar */
+
+#placar {
+    font-weight: bold;
+    margin-top: 30px;
+    font-size: 25px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#player-x {
+    color: red;
+    margin-right: 3px;
+}
+
+#player-o {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    border: 4px solid blue;
+    border-radius: 50%;
+    margin-right: 3px;
+    justify-content: center;
+    align-items: center;
+}
+
+.caixa-pontos {
+    margin: 0 20px;
+}
+
+/* Mensagem Vitoria */
+
+#message p {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #000;
+    color: white;
+    left: 0;
+    right: 0;
+    top: 150px;
+    width: 500px;
+    font-size: 50px;
+    padding: 20px;
+    display: none;
 }
