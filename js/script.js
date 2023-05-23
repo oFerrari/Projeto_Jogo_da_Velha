@@ -75,7 +75,7 @@ function checaCampeao() {
         (blocos[2] === blocos[5] && blocos[5] === blocos[8] && (blocos[2] === 'X')) || // Coluna 3
         (blocos[0] === blocos[4] && blocos[4] === blocos[8] && (blocos[0] === 'X')) || // Diagonal principal
         (blocos[2] === blocos[4] && blocos[4] === blocos[6] && (blocos[2] === 'X'))) {
-        console.log("Jogador 1 (X) GANHOU");
+        declaraCampeao('x')
     } else if ((blocos[0] === blocos[1] && blocos[1] === blocos[2] && (blocos[0] === 'O')) || // Linha 1
         (blocos[3] === blocos[4] && blocos[4] === blocos[5] && (blocos[3] === 'O')) || // Linha 2
         (blocos[6] === blocos[7] && blocos[7] === blocos[8] && (blocos[6] === 'O')) || // Linha 3
@@ -84,14 +84,47 @@ function checaCampeao() {
         (blocos[2] === blocos[5] && blocos[5] === blocos[8] && (blocos[2] === 'O')) || // Coluna 3
         (blocos[0] === blocos[4] && blocos[4] === blocos[8] && (blocos[0] === 'O')) || // Diagonal principal
         (blocos[2] === blocos[4] && blocos[4] === blocos[6] && (blocos[2] === 'O'))) {
-        console.log("Jogador 2 (O) GANHOU");
+        declaraCampeao('o')
     }
     else{
         cont++
-        console.log(cont)
         if (cont == 7) {
-            console.log("empate")
+            declaraCampeao('')
         }
     }
 
+}
+
+
+function declaraCampeao(campeao){
+    let scoreX = document.querySelector('#pontos-x')
+    let scoreO = document.querySelector('#pontos-o')
+    let msg = ''
+
+
+if(campeao == 'x'){
+    scoreX.textContent = parseInt(scoreX.textContent) + 1
+    msg = "X GANHOU";
+}else if(campeao == 'o'){
+    scoreO.textContent = parseInt(scoreO.textContent) + 1
+    msg = "O GANHOU";
+}else{
+    msg = "DEU VELHA!"
+}
+
+    messageText.innerHTML = msg
+    messageContainer.classList.remove("hide")
+
+    setTimeout(() => {
+        messageContainer.classList.add("hide")
+    },3000)
+
+    player1 = 0
+    player2 = 0
+
+    let boxesToRemove = document.querySelectorAll('.box div')
+
+    for (let i = 0; i < boxesToRemove.length; i++) {
+            boxesToRemove[i].remove()
+    }
 }
