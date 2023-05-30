@@ -31,6 +31,13 @@ for (let i = 0; i < boxes.length; i++) {
 
             if (player1 == player2) {
                 player1++
+
+                if (segundoJogador == 'ia-player') {
+                    /* Executar IA */
+                    computerPlay()
+                    player2++
+                }
+
             } else {
                 player2++
             }
@@ -57,11 +64,29 @@ function controlarVez(player1, player2) {
     return controle
 }
 
+/* VS Player ou IA */
+
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener('click', function () {
+        segundoJogador = this.getAttribute("id")
+
+        for (let j = 0; j < buttons.length; j++) {
+            buttons[j].style.display = 'none'
+        }
+
+        setTimeout(() => {
+            let container = document.querySelector("#container")
+            container.classList.remove("hide")
+        }, 500);
+
+    })
+}
+
 /* Verifica quem ganhou */
 
 function checaCampeao() {
     let blocos = [];
-    
+
 
     for (let i = 0; i < 9; i++) {
         blocos.push(document.getElementById(`block-${i + 1}`).textContent)
@@ -86,7 +111,7 @@ function checaCampeao() {
         (blocos[2] === blocos[4] && blocos[4] === blocos[6] && (blocos[2] === 'O'))) {
         declaraCampeao('o')
     }
-    else{
+    else {
         cont++
         if (cont == 7) {
             declaraCampeao('')
@@ -96,28 +121,28 @@ function checaCampeao() {
 }
 
 
-function declaraCampeao(campeao){
+function declaraCampeao(campeao) {
     let scoreX = document.querySelector('#pontos-x')
     let scoreO = document.querySelector('#pontos-o')
     let msg = ''
 
 
-if(campeao == 'x'){
-    scoreX.textContent = parseInt(scoreX.textContent) + 1
-    msg = "X GANHOU";
-}else if(campeao == 'o'){
-    scoreO.textContent = parseInt(scoreO.textContent) + 1
-    msg = "O GANHOU";
-}else{
-    msg = "DEU VELHA!"
-}
+    if (campeao == 'x') {
+        scoreX.textContent = parseInt(scoreX.textContent) + 1
+        msg = "X GANHOU";
+    } else if (campeao == 'o') {
+        scoreO.textContent = parseInt(scoreO.textContent) + 1
+        msg = "O GANHOU";
+    } else {
+        msg = "DEU VELHA!"
+    }
 
     messageText.innerHTML = msg
     messageContainer.classList.remove("hide")
 
     setTimeout(() => {
         messageContainer.classList.add("hide")
-    },3000)
+    }, 3000)
 
     player1 = 0
     player2 = 0
@@ -125,6 +150,33 @@ if(campeao == 'x'){
     let boxesToRemove = document.querySelectorAll('.box div')
 
     for (let i = 0; i < boxesToRemove.length; i++) {
-            boxesToRemove[i].remove()
+        boxesToRemove[i].remove()
+    }
+}
+
+/* IA */
+
+function computerPlay() {
+    let cloneO = o.cloneNode(true)
+    let counter = 0
+    let filled = 0
+
+    for (let i = 0; i < boxes.length; i++) {
+
+        let ramdomNumber = Math.floor(Math.random() * 5)
+
+        if (boxes[i].childNodes[0] == undefined) {
+            if (ramdomNumber <= 1) {
+                boxes[i].appendChild(cloneO)
+                counter++
+                break
+            }
+        } else {
+            filled++
+        }
+    }
+
+    if (counter == 0 && filled < 9) {
+        computerPlay()
     }
 }
